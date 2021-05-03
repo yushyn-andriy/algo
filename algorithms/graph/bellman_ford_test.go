@@ -50,6 +50,6 @@ func BenchmarkBellmanFord(b *testing.B) {
 	}
 
 	for i := 0; i < b.N; i++ {
-		graph.BellmanFord(g, 1)
+		graph.BellmanFord(g, 0)
 	}
 }
