@@ -22,6 +22,11 @@ func TestBranchSum(t *testing.T) {
 			[]int{7, 25, 5, 86, 32, 105, 1, 6, 3, 96},
 			[]int{24, 26, 151, 320},
 		},
+		{
+			&trees.Tree{Key: 2},
+			[]int{-5, 4, -6, 1, 3, 6, -2},
+			[]int{-9, -4, 9, 12},
+		},
 	}
 	for _, testCase := range testCases {
 		root := testCase.root
@@ -30,7 +35,7 @@ func TestBranchSum(t *testing.T) {
 		}
 		result := *trees.BranchSum(root, 0, &[]int{})
 		if len(testCase.expected) != len(result) {
-			t.Errorf("Expected  len(result)=%v, got %v", len(testCase.expected), len(result))
+			t.Errorf("Expected  len(result)=%v, got %v", testCase.expected, result)
 			return
 		}
 		for i := range testCase.expected {
