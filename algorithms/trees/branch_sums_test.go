@@ -35,12 +35,12 @@ func TestBranchSum(t *testing.T) {
 		}
 		result := *trees.BranchSum(root, 0, &[]int{})
 		if len(testCase.expected) != len(result) {
-			t.Errorf("Expected  len(result)=%v, got %v", testCase.expected, result)
+			t.Errorf("Expected result=%v, got %v", testCase.expected, result)
 			return
 		}
 		for i := range testCase.expected {
 			if result[i] != testCase.expected[i] {
-				t.Errorf("Expected %v is eq %v", result[i], testCase.expected[i])
+				t.Errorf("Expected result=%v, got %v", testCase.expected, result)
 			}
 		}
 	}
