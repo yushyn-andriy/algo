@@ -1,36 +1,14 @@
 package trees
 
-type Stack struct {
-	data []*Tree
-}
-
-func (s *Stack) Push(v *Tree) {
-	s.data = append(s.data, v)
-}
-
-func (s *Stack) Pop() (*Tree, bool) {
-	if len(s.data) == 0 {
-		return nil, false
-	}
-
-	v := s.data[len(s.data)-1]
-	s.data = s.data[:len(s.data)-1]
-
-	return v, true
-}
-
-func NewStack() *Stack {
-	return &Stack{}
-}
 
 func NodeDepths(root *Tree) int {
-	st := NewStack()
+	st := NewTreeStack()
 	visited := make(map[*Tree]bool)
 	depths := make(map[*Tree]int)
 
-	st.Push(root)
+	st.PushTree(root)
 	for {
-		node, ok := st.Pop()
+		node, ok := st.PopTree()
 		if !ok {
 			break
 		}
@@ -41,10 +19,10 @@ func NodeDepths(root *Tree) int {
 		visited[node] = true
 
 		if node.Left != nil {
-			st.Push(node.Left)
+			st.PushTree(node.Left)
 		}
 		if node.Right != nil {
-			st.Push(node.Right)
+			st.PushTree(node.Right)
 		}
 		if node == root {
 			depths[node] = 0

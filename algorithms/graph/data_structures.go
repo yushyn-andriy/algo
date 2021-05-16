@@ -1,5 +1,9 @@
 package graph
 
+// ========================================================
+// Graph data structures                                  =
+// ========================================================
+
 // Edge ...
 type Edge struct {
 	// Start point, end point
