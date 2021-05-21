@@ -12,12 +12,14 @@ func TestTwoNumbers(t *testing.T) {
 		{3, 2, 8},
 		{3, 4, 3, 7},
 		{-18, 4, 3, 7, 28},
+		{4, 4},
 	}
 	expNumbers := [][]int{
 		{11, -1},
 		{2, 8},
 		{3, 7},
 		{-18, 28},
+		{},
 	}
 
 	for index, arr := range s {
@@ -26,10 +28,12 @@ func TestTwoNumbers(t *testing.T) {
 		result := arrays.TwoNumbers(arr, targetSum)
 		if len(result) != len(expNumbers[index]) {
 			t.Errorf("Expected equal array sizes, got len(result)=%d, len(expNumbers)=%d", len(result), len(expNumbers))
+			return
 		}
 		for i, v := range result {
 			if expNumbers[index][i] != v {
-				t.Errorf("Expected value is %d, got %d", expNumbers[index][i], v)
+				t.Errorf("Expected is %v, got %v", expNumbers[index], result)
+				return
 			}
 		}
 	}
