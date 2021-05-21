@@ -8,10 +8,14 @@ func BubbleSort(arr []int) []int {
 		for i := 0; i < indexOfLastUnsortedEl; i++ {
 			j := i + 1
 			if arr[i] > arr[j] {
-				arr[i], arr[j] = arr[j], arr[i]
+				swap(i, j, arr)
 			}
 		}
 	}
 
 	return arr
+}
+
+func swap(i, j int, arr []int) {
+	arr[i], arr[j] = arr[j], arr[i]
 }
