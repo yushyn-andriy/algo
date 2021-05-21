@@ -1,15 +1,22 @@
 package sorting
 
 func BubbleSort(arr []int) []int {
+	var isSorted bool
 	indexOfLastUnsortedEl := len(arr)
 
-	for indexOfLastUnsortedEl >= 0 {
+Loop:
+	for {
+		isSorted = true
 		indexOfLastUnsortedEl--
 		for i := 0; i < indexOfLastUnsortedEl; i++ {
 			j := i + 1
 			if arr[i] > arr[j] {
 				swap(i, j, arr)
+				isSorted = false
 			}
+		}
+		if isSorted {
+			break Loop
 		}
 	}
 
