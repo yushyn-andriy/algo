@@ -22,14 +22,14 @@ func init() {
 	}
 }
 
-func CaesarCipherEncrypt(s string, key int) (string, error) {
+func CaesarCipherEncrypt(s string, n int) (string, error) {
 	encrypted := ""
 	for _, r := range s {
 		num, ok := ASCIIToNum[r]
 		if !ok {
 			return "", fmt.Errorf("Rune out of range ASCII symbols '%v'", r)
 		}
-		shiftedNum := (num + key) % len(ASCII)
+		shiftedNum := (num + n) % len(ASCII)
 		shiftedRune, ok := NumToASCII[shiftedNum]
 		if !ok {
 			return "", fmt.Errorf("Shifted num out of range '%v'", shiftedNum)
