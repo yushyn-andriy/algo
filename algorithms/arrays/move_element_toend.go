@@ -2,21 +2,13 @@ package arrays
 
 func MoveElementToEnd(arr []int, a int) []int {
 	l, r := 0, len(arr)-1
-
 	for ; l < r; l++ {
-		leftElement := arr[l]
-		rightElement := arr[r]
-		if leftElement == a {
-			for rightElement == a {
-				r--
-				rightElement = arr[r]
-			}
-			if l < r {
-				swap(l, r, arr)
-			}
+		for ; arr[r] == a && l < r; r-- {
+		}
+		if arr[l] == a {
+			swap(l, r, arr)
 		}
 	}
-
 	return arr
 }
 
