@@ -1,7 +1,5 @@
 package arrays
 
-import "fmt"
-
 func SpiralTraverse(x [][]int) []int {
 	if len(x) == 0 {
 		return []int{}
@@ -14,26 +12,18 @@ func SpiralTraverse(x [][]int) []int {
 
 	leftIndex, rightIndex := 0, len(x[0])-1
 	upIndex, downIndex := 0, len(x)-1
-	fmt.Println(leftIndex, rightIndex, upIndex, downIndex)
 	for leftIndex <= rightIndex && upIndex <= downIndex {
-		fmt.Println(leftIndex, rightIndex, upIndex, downIndex)
-
-		fmt.Println("right", leftIndex, rightIndex, upIndex, downIndex)
 		right(x, &sequance, leftIndex, rightIndex, upIndex)
 		upIndex++
 
-		fmt.Println("down", leftIndex, rightIndex, upIndex, downIndex)
 		down(x, &sequance, upIndex, downIndex, rightIndex)
 		rightIndex--
 
-		fmt.Println("left", leftIndex, rightIndex, upIndex, downIndex)
 		left(x, &sequance, leftIndex, rightIndex, downIndex)
 		downIndex--
 
-		fmt.Println("up", leftIndex, rightIndex, upIndex, downIndex)
 		up(x, &sequance, upIndex, downIndex, leftIndex)
 		leftIndex++
-
 	}
 
 	return sequance
