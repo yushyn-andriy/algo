@@ -1,7 +1,5 @@
 package arrays
 
-import "fmt"
-
 func LongestPeak(x []int) int {
 	largestPeak := 0
 	if len(x) < 3 {
@@ -9,7 +7,6 @@ func LongestPeak(x []int) int {
 	}
 
 	peaks := findPeakIndexes(x)
-	fmt.Println(peaks)
 	for _, peak := range peaks {
 		currentPeak := getLeftAvailableSteps(x, peak) + getRightAvailableSteps(x, peak) + 1
 		if currentPeak > largestPeak {
