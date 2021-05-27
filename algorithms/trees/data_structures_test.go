@@ -93,3 +93,161 @@ func TestDelete(t *testing.T) {
 		}
 	}
 }
+
+func TestTreeMin(t *testing.T) {
+	tests := []struct {
+		root           *trees.Tree
+		treeArr        []int
+		expectedMinKey int
+	}{
+		{
+			&trees.Tree{Key: 2},
+			[]int{1, 4, 3, 5, 6, 0},
+			0,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			2,
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+		minNone := trees.TreeMin(root)
+		if minNone.Key != test.expectedMinKey {
+			t.Errorf("test(%d) Expected key  %v, got %v", i, test.expectedMinKey, minNone.Key)
+			return
+		}
+	}
+}
+
+func TestTreeMax(t *testing.T) {
+	tests := []struct {
+		root           *trees.Tree
+		treeArr        []int
+		expectedMaxKey int
+	}{
+		{
+			&trees.Tree{Key: 2},
+			[]int{1, 4, 3, 5, 6, 0},
+			6,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			17,
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+		maxNode := trees.TreeMax(root)
+		if maxNode.Key != test.expectedMaxKey {
+			t.Errorf("test(%d) Expected key  %v, got %v", i, test.expectedMaxKey, maxNode.Key)
+			return
+		}
+	}
+}
+
+func TestTreeSuccessor(t *testing.T) {
+	tests := []struct {
+		root        *trees.Tree
+		treeArr     []int
+		successorOf int
+		expectedKey int
+	}{
+		{
+			&trees.Tree{Key: 2},
+			[]int{1, 4, 3, 5, 6, 0},
+			5,
+			6,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			6,
+			8,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			13,
+			14,
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+		successorOfNode := trees.Search(root, test.successorOf)
+
+		node := trees.TreeSuccessor(successorOfNode)
+		if node.Key != test.expectedKey {
+			t.Errorf("test(%d) Expected key  %v, got %v", i, test.expectedKey, node.Key)
+			return
+		}
+	}
+}
+
+func TestTreePredecessor(t *testing.T) {
+	tests := []struct {
+		root          *trees.Tree
+		treeArr       []int
+		predecessorOf int
+		expectedKey   int
+	}{
+		{
+			&trees.Tree{Key: 2},
+			[]int{1, 4, 3, 5, 6, 0},
+			5,
+			4,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			6,
+			5,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			13,
+			12,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			13,
+			12,
+		},
+		{
+			&trees.Tree{Key: 5},
+			[]int{8, 7, 6},
+			6,
+			5,
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+		successorOfNode := trees.Search(root, test.predecessorOf)
+
+		node := trees.TreePredecessor(successorOfNode)
+		if node.Key != test.expectedKey {
+			t.Errorf("test(%d) Expected key  %v, got %v", i, test.expectedKey, node.Key)
+			return
+		}
+	}
+}

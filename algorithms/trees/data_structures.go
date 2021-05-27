@@ -106,6 +106,7 @@ func Search(tree *Tree, key int) *Tree {
 	}
 }
 
+// TreeMin ...
 func TreeMin(tree *Tree) *Tree {
 	for tree.Left != nil {
 		tree = tree.Left
@@ -113,11 +114,41 @@ func TreeMin(tree *Tree) *Tree {
 	return tree
 }
 
+// TreeMax ...
 func TreeMax(tree *Tree) *Tree {
-	for tree.Left != nil {
-		tree = tree.Left
+	for tree.Right != nil {
+		tree = tree.Right
 	}
 	return tree
+}
+
+// TreeSuccessor ...
+func TreeSuccessor(tree *Tree) *Tree {
+	if tree.Right != nil {
+		return TreeMin(tree.Right)
+	}
+	y := tree.Parent
+	for y != nil && tree == y.Right {
+		tree = y
+		y = y.Parent
+	}
+
+	return y
+}
+
+// TreePredecessor ...
+func TreePredecessor(tree *Tree) *Tree {
+	if tree.Left != nil {
+		return TreeMax(tree.Left)
+	}
+
+	y := tree.Parent
+	for y != nil && tree == y.Left {
+		tree = y
+		y = y.Parent
+	}
+
+	return y
 }
 
 // NOTE: Fix Algorithm
