@@ -106,6 +106,21 @@ func Search(tree *Tree, key int) *Tree {
 	}
 }
 
+func TreeMin(tree *Tree) *Tree {
+	for tree.Left != nil {
+		tree = tree.Left
+	}
+	return tree
+}
+
+func TreeMax(tree *Tree) *Tree {
+	for tree.Left != nil {
+		tree = tree.Left
+	}
+	return tree
+}
+
+// NOTE: Fix Algorithm
 // Delete ..
 func Delete(tree *Tree, key int) {
 	node := Search(tree, key)
