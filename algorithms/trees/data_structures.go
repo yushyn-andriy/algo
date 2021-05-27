@@ -69,7 +69,7 @@ func InOrderWalk(tree *Tree, f func(tree *Tree)) {
 	InOrderWalk(tree.Right, f)
 }
 
-// InOrderWalk ...
+// PreOrderWalk ...
 func PreOrderWalk(tree *Tree, f func(tree *Tree)) {
 	if tree == nil {
 		return
@@ -79,14 +79,14 @@ func PreOrderWalk(tree *Tree, f func(tree *Tree)) {
 	PreOrderWalk(tree.Right, f)
 }
 
-// InOrderWalk ...
+// PostOrderWalk ...
 func PostOrderWalk(tree *Tree, f func(tree *Tree)) {
 	if tree == nil {
 		return
 	}
+	PostOrderWalk(tree.Left, f)
 	PostOrderWalk(tree.Right, f)
 	f(tree)
-	PostOrderWalk(tree.Left, f)
 }
 
 // Search ...
@@ -104,4 +104,41 @@ func Search(tree *Tree, key int) *Tree {
 	} else {
 		return Search(tree.Right, key)
 	}
+}
+
+// Delete ..
+func Delete(tree *Tree, key int) {
+	node := Search(tree, key)
+	if node == nil {
+		return
+	}
+
+	if node.Left == nil && node.Right == nil {
+		if node.Parent.Left == node {
+			node.Parent.Left = nil
+		} else {
+			node.Parent.Right = nil
+		}
+	} else if node.Left != nil && node.Right == nil {
+		if node.Parent.Left == node {
+			node.Parent.Left = node.Left
+		} else {
+			node.Parent.Right = node.Left
+		}
+	} else if node.Left == nil && node.Right != nil {
+		if node.Parent.Left == node {
+			node.Parent.Left = node.Right
+		} else {
+			node.Parent.Right = node.Right
+		}
+	} else if node.Left != nil && node.Right != nil {
+		if node.Parent.Left == node {
+			node.Parent.Left = node.Right
+			Insert(node.Parent.Left, node.Left)
+		} else {
+			node.Parent.Right = node.Right
+			Insert(node.Parent.Right, node.Left)
+		}
+	}
+
 }
