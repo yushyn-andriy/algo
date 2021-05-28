@@ -263,3 +263,74 @@ func TestTreePredecessor(t *testing.T) {
 		}
 	}
 }
+
+func TestIsBST(t *testing.T) {
+	tests := []struct {
+		root          *trees.Tree
+		treeArr       []int
+		expectedIsBST bool
+	}{
+		{
+			&trees.Tree{Key: 2},
+			[]int{1, 4, 3, 5, 6, 0},
+			true,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			true,
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+		isBST := trees.IsBST(root)
+		if isBST != test.expectedIsBST {
+			t.Errorf("test(%d) Expected %v, got %v", i, test.expectedIsBST, isBST)
+			return
+		}
+	}
+}
+
+func TestNotBST(t *testing.T) {
+	root1 := &trees.Tree{Key: 14}
+	root1.Left = &trees.Tree{Key: 15}
+
+	root2 := &trees.Tree{Key: 14}
+	root2.Right = &trees.Tree{Key: 13}
+
+	root3 := &trees.Tree{Key: 14}
+	root3.Left = &trees.Tree{Key: 13}
+	root3.Right = &trees.Tree{Key: 15}
+	root3.Right.Left = &trees.Tree{Key: 16}
+
+	tests := []struct {
+		root          *trees.Tree
+		expectedIsBST bool
+	}{
+		{
+			root1,
+			false,
+		},
+		{
+			root2,
+			false,
+		},
+		{
+			root3,
+			false,
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		isBST := trees.IsBST(root)
+		if isBST != test.expectedIsBST {
+			t.Errorf("test(%d) Expected %v, got %v", i, test.expectedIsBST, isBST)
+			return
+		}
+	}
+}

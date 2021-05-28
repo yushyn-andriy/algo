@@ -151,7 +151,6 @@ func TreePredecessor(tree *Tree) *Tree {
 	return y
 }
 
-// NOTE: Fix Algorithm
 // Delete ..
 func Delete(tree *Tree, key int) {
 	node := Search(tree, key)
@@ -198,4 +197,27 @@ func Delete(tree *Tree, key int) {
 			}
 		}
 	}
+}
+
+// IsBST ...
+func IsBST(root *Tree) bool {
+	stack := []*Tree{root}
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if node == nil {
+			continue
+		}
+		stack = append(stack, node.Left)
+		stack = append(stack, node.Right)
+		if node.Right != nil && node.Key > node.Right.Key {
+			return false
+		}
+		if node.Left != nil && node.Key <= node.Left.Key {
+			return false
+		}
+	}
+
+	return true
 }
