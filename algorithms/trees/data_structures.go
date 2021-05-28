@@ -199,6 +199,7 @@ func Delete(tree *Tree, key int) {
 	}
 }
 
+// Fix algo
 // IsBST ...
 func IsBST(root *Tree) bool {
 	stack := []*Tree{root}
