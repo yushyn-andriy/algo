@@ -159,32 +159,43 @@ func Delete(tree *Tree, key int) {
 		return
 	}
 
+	parent := node.Parent
 	if node.Left == nil && node.Right == nil {
 		if node.Parent.Left == node {
 			node.Parent.Left = nil
 		} else {
 			node.Parent.Right = nil
 		}
-	} else if node.Left != nil && node.Right == nil {
-		if node.Parent.Left == node {
-			node.Parent.Left = node.Left
-		} else {
-			node.Parent.Right = node.Left
-		}
 	} else if node.Left == nil && node.Right != nil {
-		if node.Parent.Left == node {
-			node.Parent.Left = node.Right
+		if parent.Left == node {
+			parent.Left = node.Right
 		} else {
-			node.Parent.Right = node.Right
+			parent.Right = node.Right
+		}
+	} else if node.Left != nil && node.Right == nil {
+		if parent.Left == node {
+			parent.Left = node.Left
+		} else {
+			parent.Right = node.Left
 		}
 	} else if node.Left != nil && node.Right != nil {
-		if node.Parent.Left == node {
-			node.Parent.Left = node.Right
-			Insert(node.Parent.Left, node.Left)
+		if node.Right.Left == nil {
+			if parent.Left == node {
+				parent.Left = node.Right
+			} else {
+				parent.Right = node.Right
+			}
+			node.Right.Left = node.Left
 		} else {
-			node.Parent.Right = node.Right
-			Insert(node.Parent.Right, node.Left)
+			next := TreeSuccessor(node)
+			next.Parent.Left = next.Right
+			next.Right = node.Right
+			next.Left = node.Left
+			if parent.Left == node {
+				parent.Left = next
+			} else {
+				parent.Right = next
+			}
 		}
 	}
-
 }

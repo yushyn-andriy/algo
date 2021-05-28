@@ -74,6 +74,18 @@ func TestDelete(t *testing.T) {
 			600,
 			"6:7:10:",
 		},
+		{
+			&trees.Tree{Key: 15},
+			[]int{6, 4, 3, 5, 9, 7, 8},
+			6,
+			"3:4:5:7:8:9:15:",
+		},
+		{
+			&trees.Tree{Key: 15},
+			[]int{6, 4, 3, 5, 9, 7, 8, 12, 10},
+			9,
+			"3:4:5:6:7:8:10:12:15:",
+		},
 	}
 
 	for i, test := range tests {
