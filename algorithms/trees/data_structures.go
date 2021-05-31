@@ -199,7 +199,6 @@ func Delete(tree *Tree, key int) {
 	}
 }
 
-// Fix algo
 // IsBST ...
 func IsBST(root *Tree) bool {
 	stack := []*Tree{root}
@@ -212,6 +211,38 @@ func IsBST(root *Tree) bool {
 		}
 		stack = append(stack, node.Left)
 		stack = append(stack, node.Right)
+
+		parent := node.Parent
+		if parent != nil {
+			if parent.Parent != nil {
+				if isLeftNode(parent) && isRightNode(node) {
+					if node.Key >= parent.Key && node.Key < parent.Parent.Key {
+						continue
+					} else {
+						return false
+					}
+				} else if isRightNode(parent) && isLeftNode(node) {
+					if node.Key < parent.Key && node.Key >= parent.Parent.Key {
+						continue
+					} else {
+						return false
+					}
+				} else if isLeftNode(parent) && isLeftNode(node) {
+					if node.Key < parent.Key && parent.Key < parent.Parent.Key {
+						continue
+					} else {
+						return false
+					}
+				} else if isRightNode(parent) && isRightNode(node) {
+					if node.Key >= parent.Key && parent.Key >= parent.Parent.Key {
+						continue
+					} else {
+						return false
+					}
+				}
+			}
+		}
+
 		if node.Right != nil && node.Key > node.Right.Key {
 			return false
 		}
@@ -221,4 +252,18 @@ func IsBST(root *Tree) bool {
 	}
 
 	return true
+}
+
+func isLeftNode(node *Tree) bool {
+	if node.Parent.Left == node {
+		return true
+	}
+	return false
+}
+
+func isRightNode(node *Tree) bool {
+	if node.Parent.Right == node {
+		return true
+	}
+	return false
 }

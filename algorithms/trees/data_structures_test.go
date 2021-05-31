@@ -297,15 +297,41 @@ func TestIsBST(t *testing.T) {
 
 func TestNotBST(t *testing.T) {
 	root1 := &trees.Tree{Key: 14}
-	root1.Left = &trees.Tree{Key: 15}
+	root1.Left = &trees.Tree{Key: 15, Parent: root1}
 
 	root2 := &trees.Tree{Key: 14}
-	root2.Right = &trees.Tree{Key: 13}
+	root2.Right = &trees.Tree{Key: 13, Parent: root2}
 
 	root3 := &trees.Tree{Key: 14}
-	root3.Left = &trees.Tree{Key: 13}
-	root3.Right = &trees.Tree{Key: 15}
-	root3.Right.Left = &trees.Tree{Key: 16}
+	root3.Left = &trees.Tree{Key: 13, Parent: root3}
+	root3.Right = &trees.Tree{Key: 15, Parent: root3}
+	root3.Right.Left = &trees.Tree{Key: 16, Parent: root3.Right}
+
+	root4 := &trees.Tree{Key: 14}
+	root4.Left = &trees.Tree{Key: 13, Parent: root4}
+	root4.Right = &trees.Tree{Key: 15, Parent: root4}
+	root4.Right.Right = &trees.Tree{Key: 16, Parent: root4.Right}
+	root4.Right.Right.Left = &trees.Tree{Key: 12, Parent: root4.Right.Right}
+
+	root5 := &trees.Tree{Key: 14}
+	root5.Left = &trees.Tree{Key: 10, Parent: root5}
+	root5.Left.Right = &trees.Tree{Key: 17, Parent: root5.Left}
+	root5.Right = &trees.Tree{Key: 15, Parent: root5}
+	root5.Right.Right = &trees.Tree{Key: 16, Parent: root5.Right}
+
+	root6 := &trees.Tree{Key: 14}
+	root6.Left = &trees.Tree{Key: 10, Parent: root6}
+	root6.Left.Left = &trees.Tree{Key: 9, Parent: root6.Left}
+	root6.Left.Left.Left = &trees.Tree{Key: 17, Parent: root6.Left.Left}
+	root6.Right = &trees.Tree{Key: 15, Parent: root6}
+	root6.Right.Right = &trees.Tree{Key: 16, Parent: root6.Right}
+
+	root7 := &trees.Tree{Key: 14}
+	root7.Left = &trees.Tree{Key: 10, Parent: root7}
+	root7.Left.Left = &trees.Tree{Key: 9, Parent: root7.Left}
+	root7.Right = &trees.Tree{Key: 15, Parent: root7}
+	root7.Right.Right = &trees.Tree{Key: 16, Parent: root7.Right}
+	root7.Right.Right.Right = &trees.Tree{Key: 5, Parent: root7.Right.Right}
 
 	tests := []struct {
 		root          *trees.Tree
@@ -321,6 +347,22 @@ func TestNotBST(t *testing.T) {
 		},
 		{
 			root3,
+			false,
+		},
+		{
+			root4,
+			false,
+		},
+		{
+			root5,
+			false,
+		},
+		{
+			root6,
+			false,
+		},
+		{
+			root7,
 			false,
 		},
 	}
