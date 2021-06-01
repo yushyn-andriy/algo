@@ -376,3 +376,63 @@ func TestNotBST(t *testing.T) {
 		}
 	}
 }
+
+func TestPreOrderWalk(t *testing.T) {
+	tests := []struct {
+		root                   *trees.Tree
+		treeArr                []int
+		expectedTraverseString string
+	}{
+		{
+			&trees.Tree{Key: 15},
+			[]int{6, 4, 3, 5, 9, 7, 8, 12, 10},
+			"15:6:4:3:5:9:7:8:12:10:",
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+
+		s := ""
+		trees.PreOrderWalk(root, func(tree *trees.Tree) {
+			s += fmt.Sprintf("%d:", tree.Key)
+		})
+		if s != test.expectedTraverseString {
+			t.Errorf("test(%d) Expected traverse string %v, got %v", i, test.expectedTraverseString, s)
+			return
+		}
+	}
+}
+
+func TestPostOrderWalk(t *testing.T) {
+	tests := []struct {
+		root                   *trees.Tree
+		treeArr                []int
+		expectedTraverseString string
+	}{
+		{
+			&trees.Tree{Key: 15},
+			[]int{6, 4, 3, 5, 9, 7, 8, 12, 10},
+			"3:5:4:8:7:10:12:9:6:15:",
+		},
+	}
+
+	for i, test := range tests {
+		root := test.root
+		for _, key := range test.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+
+		s := ""
+		trees.PostOrderWalk(root, func(tree *trees.Tree) {
+			s += fmt.Sprintf("%d:", tree.Key)
+		})
+		if s != test.expectedTraverseString {
+			t.Errorf("test(%d) Expected traverse string %v, got %v", i, test.expectedTraverseString, s)
+			return
+		}
+	}
+}
