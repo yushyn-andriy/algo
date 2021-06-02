@@ -42,6 +42,42 @@ func TestNodeDepths(t *testing.T) {
 	}
 }
 
+func TestNodeDepthsMax(t *testing.T) {
+	testCases := []struct {
+		root                  *trees.Tree
+		treeArr               []int
+		expectedNodeDepthsMax int
+	}{
+		{
+			&trees.Tree{Key: 2},
+			[]int{1, 4, 3, 5, 6, 0},
+			3,
+		},
+		{
+			&trees.Tree{Key: 14},
+			[]int{5, 17, 2, 6, 3, 13, 10, 12, 8},
+			5,
+		},
+		{
+			&trees.Tree{Key: 4},
+			[]int{1, 15, 14, 20, 6, 17, 11, 19, 10},
+			5,
+		},
+	}
+
+	for _, testCase := range testCases {
+		root := testCase.root
+		for _, key := range testCase.treeArr {
+			trees.Insert(root, &trees.Tree{Key: key})
+		}
+
+		nodeDepths := trees.NodeDepthsMax(root)
+		if nodeDepths != testCase.expectedNodeDepthsMax {
+			t.Errorf("Expected depthsMax=%v, got=%v", testCase.expectedNodeDepthsMax, nodeDepths)
+		}
+	}
+}
+
 func BenchmarkNodeDepths(b *testing.B) {
 	root := &trees.Tree{Key: 4}
 	treeArr := []int{1, 15, 14, 20, 6, 17, 11, 19, 10}
