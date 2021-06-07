@@ -1,7 +1,6 @@
-package recursion
+package dynamic_programming
 
 import (
-	"fmt"
 	"math"
 )
 

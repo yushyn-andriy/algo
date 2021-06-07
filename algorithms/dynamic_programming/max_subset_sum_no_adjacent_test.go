@@ -1,9 +1,9 @@
-package recursion_test
+package dynamic_programming_test
 
 import (
 	"testing"
 
-	"github.com/baybaraandrey/algo/algorithms/recursion"
+	"github.com/baybaraandrey/algo/algorithms/dynamic_programming"
 )
 
 func TestMaxSubsetSumNoAdjacent(t *testing.T) {
@@ -34,7 +34,7 @@ func TestMaxSubsetSumNoAdjacent(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		m := recursion.MaxSubsetSumNoAdjacent(test.x)
+		m := dynamic_programming.MaxSubsetSumNoAdjacent(test.x)
 		if m != test.m {
 			t.Errorf("test(%d): Wrong subset sum,  expected %d but got %d", i, test.m, m)
 		}
