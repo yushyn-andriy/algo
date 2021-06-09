@@ -1,6 +1,7 @@
 package trees_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/baybaraandrey/algo/algorithms/strings"
@@ -8,13 +9,15 @@ import (
 )
 
 func TestBuildHuffmanTree(t *testing.T) {
-	s := "AAAAABBCDE"
+	s := "AAAABBCCDE"
 	e := strings.CalculateRunesProbability(strings.CountRunes(s), len(s))
 	ht := trees.BuildHuffmanTree(e)
-	t.Errorf("%s", ht)
-	t.Errorf("%s", ht.Left)
-	t.Errorf("%s", ht.Left.Left)
-	t.Errorf("%s", ht.Left.Right)
 
-	t.Errorf("%s", ht.Right)
+	exps := ""
+	trees.HuffmanInOrderWalk(ht, func(tree *trees.HuffmanNode) {
+		exps += fmt.Sprintf("%s:", tree.Value)
+	})
+	if exps != "A:AB:B:ABC:C:ABCD:D:ABCDE:E:" {
+		t.Errorf("%s", exps)
+	}
 }

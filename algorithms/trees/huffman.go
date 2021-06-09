@@ -19,6 +19,16 @@ func (h *HuffmanNode) String() string {
 	return fmt.Sprintf("HuffmanNode(Value='%v', Freq='%v')", h.Value, h.Freq)
 }
 
+// InOrderWalk ...
+func HuffmanInOrderWalk(tree *HuffmanNode, f func(tree *HuffmanNode)) {
+	if tree == nil {
+		return
+	}
+	HuffmanInOrderWalk(tree.Left, f)
+	f(tree)
+	HuffmanInOrderWalk(tree.Right, f)
+}
+
 // A PriorityQueue implements heap.Interface and holds Items.
 type PriorityQueue []*HuffmanNode
 
