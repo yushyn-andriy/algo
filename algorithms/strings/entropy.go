@@ -24,7 +24,7 @@ func CountRunes(s string) map[rune]int {
 func CalculateRunesProbability(c map[rune]int, l int) map[rune]float64 {
 	p := make(map[rune]float64, len(c))
 	for k, v := range c {
-		p[k] = float64(v) / float64(l)
+		p[k] = math.Round((float64(v)/float64(l))*100) / 100
 	}
 
 	return p

@@ -25,7 +25,7 @@ func TestEntropy(t *testing.T) {
 		},
 		{
 			"AAB",
-			0.92,
+			0.91,
 		},
 	}
 
