@@ -10,6 +10,7 @@ import (
 
 func TestBuildHuffmanTree(t *testing.T) {
 	s := "AAAABBCCDE"
+
 	e := strings.CalculateRunesProbability(strings.CountRunes(s), len(s))
 	ht := trees.BuildHuffmanTree(e)
 
@@ -17,7 +18,15 @@ func TestBuildHuffmanTree(t *testing.T) {
 	trees.HuffmanInOrderWalk(ht, func(tree *trees.HuffmanNode) {
 		exps += fmt.Sprintf("%s:", tree.Value)
 	})
-	if exps != "A:AB:B:ABC:C:ABCD:D:ABCDE:E:" {
+	if exps != "A:ACBDE:C:CBDE:B:BDE:D:DE:E:" {
 		t.Errorf("%s", exps)
 	}
+}
+
+func TestHuffmanCodesFromTree(t *testing.T) {
+	s := "AAAABBCCDE"
+	e := strings.CalculateRunesProbability(strings.CountRunes(s), len(s))
+	ht := trees.BuildHuffmanTree(e)
+	t.Errorf("%s", ht)
+	t.Errorf("%v", trees.HuffmanCodesFromTree(ht))
 }

@@ -29,6 +29,25 @@ func HuffmanInOrderWalk(tree *HuffmanNode, f func(tree *HuffmanNode)) {
 	HuffmanInOrderWalk(tree.Right, f)
 }
 
+// InOrderWalk ...
+func huffmanInOrderWalkToGetCodes(tree *HuffmanNode, s string, codes map[string]string) {
+	if tree == nil {
+		return
+	}
+
+	if tree.Left == nil && tree.Right == nil {
+		codes[tree.Value] = s
+	}
+	huffmanInOrderWalkToGetCodes(tree.Left, s+"0", codes)
+	huffmanInOrderWalkToGetCodes(tree.Right, s+"1", codes)
+}
+
+func HuffmanCodesFromTree(node *HuffmanNode) map[string]string {
+	m := make(map[string]string)
+	huffmanInOrderWalkToGetCodes(node, "", m)
+	return m
+}
+
 // A PriorityQueue implements heap.Interface and holds Items.
 type PriorityQueue []*HuffmanNode
 
@@ -36,7 +55,7 @@ func (pq PriorityQueue) Len() int { return len(pq) }
 
 func (pq PriorityQueue) Less(i, j int) bool {
 	// We want Pop to give us the highest, not lowest, priority so we use greater than here.
-	return pq[i].Freq > pq[j].Freq
+	return pq[i].Freq < pq[j].Freq
 }
 
 func (pq PriorityQueue) Swap(i, j int) {
