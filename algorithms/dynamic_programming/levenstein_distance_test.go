@@ -29,7 +29,7 @@ func TestLevenshteinDistance(t *testing.T) {
 		{
 			"levenshteinDist(s1, s2, i, j-1),",
 			"levenshteinDist(s1, s2, i-1, j),",
-			2,
+			4,
 		},
 		{
 			"pol",
@@ -37,9 +37,9 @@ func TestLevenshteinDistance(t *testing.T) {
 			2,
 		},
 		{
-			"Levenshtein distance is a string metric for measuring",
-			"Levenshtein distance is metric for measuring",
-			9,
+			"Levenshtein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.",
+			"levenshtein istance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edtts required to change one word into the other.",
+			43,
 		},
 	}
 
