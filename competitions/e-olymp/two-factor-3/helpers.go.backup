@@ -1,0 +1,277 @@
+package main
+
+import "fmt"
+
+var simpleNumbers []int = []int{
+	2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 71,
+	73, 79, 83, 90, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+}
+
+func FactoringNumbers(x int) []int {
+	f := []int{}
+	div := 2
+	for x > 1 {
+		for x%div == 0 {
+			x = x / div
+			f = append(f, div)
+		}
+		div++
+	}
+	return f
+}
+
+func Factors(fn []int) [][][]int {
+	r := [][][]int{}
+	factors(fn, len(fn), [][]int{}, &r)
+	return r
+}
+
+func factors(fn []int, fnLen int, currCombination [][]int, r *[][][]int) {
+	if len(fn) == 0 {
+		*r = append(*r, currCombination)
+		return
+	}
+
+	for i := 1; i <= fnLen; i++ {
+		tmp := []int{}
+		for j := 0; j < i; j++ {
+			if len(fn) == 0 {
+				break
+			}
+			el := fn[len(fn)-1]
+			fn = fn[:len(fn)-1]
+			tmp = append(tmp, el)
+		}
+		factors(fn, fnLen, currCombination, r)
+		for j := 0; j < i; j++ {
+			if len(tmp) == 0 {
+				break
+			}
+			el := tmp[len(tmp)-1]
+			tmp = tmp[:len(tmp)-1]
+			fn = append(fn, el)
+		}
+	}
+}
+
+func CalculateT(f []int) map[int]int {
+	m := make(map[int]int)
+	for _, v := range f {
+		m[v] += 1
+	}
+	return m
+}
+
+func NumberOfDivisors(x int) int {
+	div := 2
+	currenDivisorCount := 0
+	numberOfDivisors := 1
+	for x > 1 {
+		for x%div == 0 {
+			currenDivisorCount += 1
+			// fmt.Print(" ", div, " *")
+
+			x = x / div
+		}
+		numberOfDivisors *= currenDivisorCount + 1
+		currenDivisorCount = 0
+		div++
+	}
+	//fmt.Println()
+	return numberOfDivisors
+}
+
+func Substract(x, y []int) []int {
+	m := make(map[int]int)
+	for _, v := range x {
+		m[v] += 1
+	}
+
+	for _, v := range y {
+		m[v] -= 1
+	}
+
+	r := []int{}
+	for k, v := range m {
+		if v > 0 {
+			for i := 0; i < v; i++ {
+				r = append(r, k)
+			}
+		}
+	}
+	//sort.Ints(r)
+
+	return r
+}
+
+func SearchSubsets(x []int) [][]int {
+	r := [][]int{}
+	searchSubset(0, len(x), x, []int{}, &r)
+	return r
+}
+
+func searchSubset(k, n int, x []int, currentSubset []int, res *[][]int) {
+	if k == n {
+		s := make([]int, len(currentSubset))
+		copy(s, currentSubset)
+		*res = append(*res, s)
+	} else {
+		currentSubset = append(currentSubset, x[k])
+		searchSubset(k+1, n, x, currentSubset, res)
+		currentSubset = currentSubset[:len(currentSubset)-1]
+		searchSubset(k+1, n, x, currentSubset, res)
+	}
+}
+
+func SearchSubsetFactoring(x [][]int, targetK int) [][][]int {
+	r := [][][]int{}
+	searchSubsetFactoring(0, len(x), x, [][]int{}, &r, targetK)
+	return r
+}
+
+func searchSubsetFactoring(k, n int, x [][]int, currentSubset [][]int, res *[][][]int, targetK int) {
+	if k == n {
+		currentK := 1
+		for _, j := range currentSubset {
+			currentK *= mul(j)
+		}
+		if currentK != targetK {
+			return
+		}
+
+		s := make([][]int, len(currentSubset))
+		copy(s, currentSubset)
+		*res = append(*res, s)
+	} else {
+		currentSubset = append(currentSubset, x[k])
+		searchSubsetFactoring(k+1, n, x, currentSubset, res, targetK)
+		currentSubset = currentSubset[:len(currentSubset)-1]
+		searchSubsetFactoring(k+1, n, x, currentSubset, res, targetK)
+	}
+}
+
+func GetNByK(k int) int {
+	i := 1
+	var currentK int
+	for ; ; i++ {
+		n := NumberOfDivisors(i)
+		if n%2 == 0 {
+			currentK = n / 2
+		} else {
+			currentK = (n / 2) + 1
+		}
+		if currentK == k {
+			return i
+		}
+	}
+}
+
+func main() {
+	// fmt.Scanf("%d", &k)
+	//fmt.Println(k, GetNByK(k))*/
+	/*for k := 1; k < 60; k++ {
+		fmt.Println(k, FactoringNumbers(k))
+	}*/
+	/*
+		for k = 1; k <= 50; k++ {
+			if k == 32 {
+				continue
+			}
+			fmt.Println("---------------------------------------")
+			fmt.Println(k)
+			factoring := FactoringNumbers(k)
+			subsets := SearchSubsets(factoring)
+			fmt.Println(factoring)
+			fmt.Println(subsets)
+			a := SearchSubsetFactoring(subsets, k)
+			for _, e := range a {
+				fmt.Println(k, ":", e)
+			}
+		}*/
+
+	var k int
+	//fmt.Scanf("%d", &k)
+
+	// k = 38
+	// fmt.Println(NumberOfDivisors(137438953472)) // 38
+	// fmt.Println(NumberOfDivisors(786432))       // 19*2
+
+	// k = 58
+	// factoring := FactoringNumbers(k)
+	// fmt.Println(factoring)
+	// fmt.Println(NumberOfDivisors(805306368)) // 58
+	// fmt.Println(NumberOfDivisors(786432))       // 29*2
+
+	//k = 62
+	//factoring := FactoringNumbers(k)
+	//fmt.Println(factoring)
+	//fmt.Println(NumberOfDivisors(3221225472)) // 62
+	// fmt.Println(NumberOfDivisors(786432))       // 29*2
+
+	// k = 68
+	// factoring := FactoringNumbers(k)
+	// fmt.Println(factoring)
+	// fmt.Println(NumberOfDivisors(983040)) // 68
+	// fmt.Println(NumberOfDivisors(786432))       // 29*2
+
+	/*
+		k = 74
+		factoring := FactoringNumbers(k)
+		fmt.Println(factoring)
+		fmt.Println(NumberOfDivisors(206158430208)) // 74
+	*/
+	/*
+		k = 86
+		factoring := FactoringNumbers(k)
+		fmt.Println(factoring)
+		fmt.Println(NumberOfDivisors(13194139533312)) // 86
+	*/
+	/*k = 92
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(113246208)) // 92*/
+
+	/*k = 94
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(211106232532992)) // 94
+	*/
+
+	/*k = 98
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(233280)) // 94*/
+
+	/*k = 88
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(107520)) // 88
+	*/
+	/*k = 66
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(46080)) // 88*/
+	/*k = 52
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(61440)) // 52*/
+
+	/*k = 76
+	factoring := FactoringNumbers(k)
+	fmt.Println(factoring)
+	fmt.Println(NumberOfDivisors(3932160)) // 76
+	*/
+
+	for k = 1; k < 51; k++ {
+		factoring := FactoringNumbers(k * 2)
+		fmt.Println(k*2, factoring)
+	}
+}
+
+func mul(x []int) int {
+	s := 1
+	for _, v := range x {
+		s *= v
+	}
+	return s
+}
