@@ -45,6 +45,27 @@ func TestFactors(t *testing.T) {
 				},
 			},
 		},
+		{
+			[]int{2, 2, 17},
+			[][][]int{
+				{
+					{17},
+					{2},
+					{2},
+				},
+				{
+					{17},
+					{2, 2},
+				},
+				{
+					{17, 2},
+					{2},
+				},
+				{
+					{17, 2, 2},
+				},
+			},
+		},
 	}
 
 	for i, test := range tests {
@@ -55,7 +76,7 @@ func TestFactors(t *testing.T) {
 		}
 		for j, l := range factors {
 			if !reflect.DeepEqual(test.cs[j], l) {
-				t.Errorf("test(%d) subtest(%d) expected %v got %v", i, j, l, test.cs[i])
+				t.Errorf("test(%d) subtest(%d) expected %v got %v", i, j, test.cs[j], l)
 			}
 		}
 	}
