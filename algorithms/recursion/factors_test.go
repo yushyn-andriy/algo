@@ -1,6 +1,7 @@
 package recursion_test
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/baybaraandrey/algo/algorithms/recursion"
@@ -9,16 +10,53 @@ import (
 func TestFactors(t *testing.T) {
 	tests := []struct {
 		fn []int
+		cs [][][]int
 	}{
 		{
-			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
+			[]int{1, 2, 3},
+			[][][]int{
+				{
+					{3},
+					{2},
+					{1},
+				},
+				{
+					{3},
+					{2, 1},
+				},
+				{
+					{3, 2},
+					{1},
+				},
+				{
+					{3, 2, 1},
+				},
+			},
+		},
+		{
+			[]int{1, 2},
+			[][][]int{
+				{
+					{2},
+					{1},
+				},
+				{
+					{2, 1},
+				},
+			},
 		},
 	}
 
 	for i, test := range tests {
 		factors := recursion.Factors(test.fn)
-		for _, l := range factors {
-			t.Errorf("test(%d) %v", i, l)
+		if len(factors) != len(test.cs) {
+			t.Errorf("test(%d) Expected len %d got %d", i, len(factors), len(test.cs))
+			continue
+		}
+		for j, l := range factors {
+			if !reflect.DeepEqual(test.cs[j], l) {
+				t.Errorf("test(%d) subtest(%d) expected %v got %v", i, j, l, test.cs[i])
+			}
 		}
 	}
 }
