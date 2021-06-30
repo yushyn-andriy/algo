@@ -32,6 +32,10 @@ func TestSingleCycleCheck(t *testing.T) {
 			false,
 		},
 		{
+			[]int{3, 1, 1, -3},
+			false,
+		},
+		{
 			[]int{2, 3, 1, -4, -4, 2},
 			true,
 		},
