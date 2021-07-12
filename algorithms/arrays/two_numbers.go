@@ -18,3 +18,22 @@ func TwoNumbers(arr []int, targetSum int) []int {
 	}
 	return []int{}
 }
+
+// TwoNumberSum algoexpert submitted code
+func TwoNumberSum(array []int, target int) []int {
+	m := make(map[int]bool)
+	for _, n := range array {
+		m[n] = true
+	}
+
+	for _, n := range array {
+		diff := target - n
+		m[n] = false
+		if val, ok := m[diff]; ok && val {
+			return []int{n, diff}
+		}
+		m[n] = true
+	}
+
+	return []int{}
+}

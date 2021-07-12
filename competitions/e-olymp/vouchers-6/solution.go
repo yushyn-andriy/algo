@@ -26,8 +26,9 @@ func permutations(x, c []Vaucher, r *[][]Vaucher, chosen []bool, max *int) {
 				curr += (v.Days - i) * v.Price
 			}
 		}
-		if curr > *max {
+		if curr >= *max {
 			*max = curr
+			fmt.Println(curr, c)
 		}
 		return
 	}
