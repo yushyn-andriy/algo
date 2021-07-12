@@ -30,7 +30,7 @@ func getLeftAvailableSteps(x []int, peakIndex int) int {
 
 func getRightAvailableSteps(x []int, peakIndex int) int {
 	steps := 0
-	for i := peakIndex; i < len(x); i++ {
+	for i := peakIndex; i < len(x)-1; i++ {
 		if x[i+1] < x[i] {
 			steps += 1
 		} else {

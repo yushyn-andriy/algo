@@ -7,6 +7,7 @@ func SpiralTraverse(x [][]int) []int {
 	if len(x) == 1 {
 		return x[0]
 	}
+	count := len(x) * len(x[0])
 
 	sequance := []int{}
 
@@ -16,11 +17,23 @@ func SpiralTraverse(x [][]int) []int {
 		right(x, &sequance, leftIndex, rightIndex, upIndex)
 		upIndex++
 
+		if len(sequance) >= count {
+			break
+		}
+
 		down(x, &sequance, upIndex, downIndex, rightIndex)
 		rightIndex--
 
+		if len(sequance) >= count {
+			break
+		}
+
 		left(x, &sequance, leftIndex, rightIndex, downIndex)
 		downIndex--
+
+		if len(sequance) >= count {
+			break
+		}
 
 		up(x, &sequance, upIndex, downIndex, leftIndex)
 		leftIndex++

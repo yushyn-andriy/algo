@@ -28,6 +28,10 @@ func TestLongestPeak(t *testing.T) {
 			0,
 		},
 		{
+			[]int{1, 3, 2},
+			3,
+		},
+		{
 			[]int{1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3},
 			6,
 		},
@@ -45,7 +49,6 @@ func TestLongestPeak(t *testing.T) {
 		peak := arrays.LongestPeak(test.x)
 		if peak != test.expectedLongestPeak {
 			t.Errorf("test(%d) expecfted %d, got %d", i, test.expectedLongestPeak, peak)
-			return
 		}
 	}
 }
