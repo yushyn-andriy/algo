@@ -5,8 +5,9 @@ import "math"
 type BST struct {
 	Value int
 
-	Left  *BST
-	Right *BST
+	Left   *BST
+	Right  *BST
+	Parent *BST
 }
 
 func (tree *BST) FindClosestValue(target int) int {
