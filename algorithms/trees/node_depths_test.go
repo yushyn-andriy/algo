@@ -100,6 +100,11 @@ func TestMinHeightBST(t *testing.T) {
 			[]int{14, 10, 1, 6, 11, 19, 15, 17, 20},
 			4,
 		},
+		{
+			[]int{1, 2, 5, 7, 10, 13, 14, 15, 22},
+			[]int{10, 5, 1, 2, 7, 15, 13, 14, 22},
+			4,
+		},
 	}
 
 	for i, test := range tests {
@@ -107,12 +112,10 @@ func TestMinHeightBST(t *testing.T) {
 		nodeDepthsMax := trees.NodeDepthsMax(root)
 		if nodeDepthsMax != test.expectedDepthsMax {
 			t.Errorf("test(%d) Expected depthsMax=%v, got=%v", i, test.expectedDepthsMax, nodeDepthsMax)
-			return
 		}
 		buildedArr := trees.BuildArr(test.x)
 		if !reflect.DeepEqual(buildedArr, test.expectedBuildedArr) {
 			t.Errorf("test(%d) Expected buildedArr=%v, got=%v", i, test.expectedBuildedArr, buildedArr)
-			return
 		}
 	}
 }
