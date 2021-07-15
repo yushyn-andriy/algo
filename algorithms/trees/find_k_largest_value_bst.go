@@ -11,13 +11,13 @@ func (tree *BST) kMax(k int) int {
 }
 
 func (tree *BST) findKMax(sortedKLargest *[]int, k int) {
-	if tree == nil || len(*sortedKLargest) == k {
+	if tree == nil || len(*sortedKLargest) >= k {
 		return
 	}
 
 	tree.Right.findKMax(sortedKLargest, k)
-	if len(*sortedKLargest) <= k {
+	if len(*sortedKLargest) < k {
 		*sortedKLargest = append(*sortedKLargest, tree.Value)
+		tree.Left.findKMax(sortedKLargest, k)
 	}
-	tree.Left.findKMax(sortedKLargest, k)
 }
