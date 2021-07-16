@@ -31,3 +31,18 @@ func TestBinarySearch(t *testing.T) {
 		}
 	}
 }
+
+func TestBinarySearchAlgoSolution1(t *testing.T) {
+	tests := []struct {
+		arr                  []int
+		value, expectedIndex int
+	}{
+		{[]int{0, 1, 21, 33, 45, 45, 61, 71, 72, 73}, 70, -1},
+	}
+	for i, test := range tests {
+		idx := searching.BinarySearchAlgoSolution1(test.arr, test.value)
+		if idx != test.expectedIndex {
+			t.Errorf("test(%d) error expected index=%v, got=%v", i, test.expectedIndex, idx)
+		}
+	}
+}
