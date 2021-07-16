@@ -1,6 +1,7 @@
 package arrays_test
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/baybaraandrey/algo/algorithms/arrays"
@@ -39,6 +40,29 @@ func TestMaxThreeNumbers(t *testing.T) {
 		}
 		if threeMax[arrays.THIRD].Value != test.expected[arrays.THIRD].Value {
 			t.Errorf("test(%v) error expected %+v got %+v", i, test.expected[arrays.THIRD], threeMax[arrays.THIRD])
+		}
+	}
+}
+
+func TestFindThreeLargestNumbersAlgoSoulution1(t *testing.T) {
+	tests := []struct {
+		arr      []int
+		expected []int
+	}{
+		{
+			[]int{6, 1, 2, 3},
+			[]int{2, 3, 6},
+		},
+		{
+			[]int{141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7},
+			[]int{18, 141, 541},
+		},
+	}
+
+	for i, test := range tests {
+		out := arrays.FindThreeLargestNumbersAlgoSoulution1(test.arr)
+		if !reflect.DeepEqual(out, test.expected) {
+			t.Errorf("test(%v) error expected %+v got %+v", i, test.expected, out)
 		}
 	}
 }
