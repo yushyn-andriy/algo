@@ -18,7 +18,7 @@ func TestFindNodesDistanceK(t *testing.T) {
 					Value: 2,
 					Left: &BinaryTree{
 						Value: 4,
-					},
+					}, 
 					Right: &BinaryTree{
 						Value: 5,
 					},
