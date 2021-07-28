@@ -41,3 +41,33 @@ func min(array []float64) float64 {
 	}
 	return m
 }
+
+func MinNumberOfCoinsForChange(n int, denoms []int) int {
+	numOfcoins := make([]int, n+1)
+	for i := range numOfcoins {
+		numOfcoins[i] = math.MaxInt32
+	}
+	numOfcoins[0] = 0
+	for _, denom := range denoms {
+		for amount := range numOfcoins {
+			if denom <= amount {
+				numOfcoins[amount] = min1(numOfcoins[amount], numOfcoins[amount-denom]+1)
+			}
+		}
+	}
+	if numOfcoins[n] != math.MaxInt32 {
+		return numOfcoins[n]
+	}
+	return -1
+}
+
+func min1(arg1 int, rest ...int) int {
+	curr := arg1
+	for _, num := range rest {
+		if num < curr {
+			curr = num
+		}
+	}
+
+	return curr
+}
