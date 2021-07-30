@@ -5,10 +5,11 @@ import (
 )
 
 type LinkedList struct {
-	Key  int
-	Data string
-	Next *LinkedList
-	Prev *LinkedList
+	Key   int
+	Data  string
+	Value int
+	Next  *LinkedList
+	Prev  *LinkedList
 }
 
 type L struct {
