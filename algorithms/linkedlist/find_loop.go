@@ -27,8 +27,7 @@ func FindLoopAlgoSolution(head *LinkedListLoop) *LinkedListLoop {
 	first := head.Next
 	second := first.Next
 	for first != second {
-		first = first.Next
-		second = second.Next
+		first, second = first.Next, second.Next.Next
 	}
 	first = head
 	for first != second {
