@@ -35,7 +35,7 @@ func TestLongestBalancedSubstring(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		longestMax := LongestBalancedSubstring(test.str)
+		longestMax := LongestBalancedSubstringCubic(test.str)
 		if longestMax != test.longestMax {
 			t.Errorf("test(%d) expected %v got %v", i, test.longestMax, longestMax)
 		}
