@@ -1,9 +1,11 @@
 package famous
 
-func Kadanes(x []int) (best int) {
-	curr := 0
-	for _, v := range x {
-		curr = max(0, curr+v)
+func KadanesAlgorithm(x []int) (best int) {
+	curr := x[0]
+	best = x[0]
+	for i := 1; i < len(x); i++ {
+		v := x[i]
+		curr = max(v, curr+v)
 		best = max(best, curr)
 	}
 	return
