@@ -2,7 +2,7 @@ package arrays
 
 import "testing"
 
-func TestMergeOverlappingIntervals(t *testing.T) {
+func TestMinRewards(t *testing.T) {
 	tests := []struct {
 		in  []int
 		out int
