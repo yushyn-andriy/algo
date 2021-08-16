@@ -7,16 +7,14 @@ func RiverSizes(matrix [][]int) []int {
 	for i := range matrix {
 		visited[i] = make([]bool, len(matrix[i]))
 	}
-
 	for i := range matrix {
-		for j := range matrix {
+		for j := range matrix[i] {
 			if visited[i][j] {
 				continue
 			}
 			sizes = traverseNode(i, j, matrix, visited, sizes)
 		}
 	}
-
 	return sizes
 }
 
@@ -43,9 +41,7 @@ func traverseNode(i, j int, matrix [][]int, visited [][]bool, sizes []int) []int
 	if currentRiverSize > 0 {
 		sizes = append(sizes, currentRiverSize)
 	}
-
 	return sizes
-
 }
 
 func getUnvisitedNeighbors(i, j int, matrix [][]int, visited [][]bool) [][]int {
