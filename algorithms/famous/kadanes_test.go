@@ -22,7 +22,7 @@ func TestKadanes(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		best := famous.Kadanes(test.x)
+		best := famous.KadanesAlgorithm(test.x)
 		if test.best != best {
 			t.Errorf("test(%d) expect %#v got %#v", i, test.best, best)
 		}
