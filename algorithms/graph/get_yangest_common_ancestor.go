@@ -17,7 +17,7 @@ func getDescendantDepth(descendant, topAncestor *AncestralTree) int {
 	depth := 0
 	for descendant != topAncestor {
 		depth += 1
-		descendant = topAncestor.Ancestor
+		descendant = descendant.Ancestor
 	}
 	return depth
 }
