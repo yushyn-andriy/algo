@@ -22,6 +22,7 @@ func init() {
 	}
 }
 
+// o(n) time | o(1) space
 func CaesarCipherEncrypt(s string, n int) (string, error) {
 	encrypted := ""
 	for _, r := range s {
