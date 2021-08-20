@@ -39,3 +39,54 @@ func isNodeInCycle(node int, edges [][]int, visited []bool, currentlyInStack []b
 
 	return false
 }
+
+type Color int
+
+const (
+	White Color = 0
+	Grey  Color = 1
+	Black Color = 2
+)
+
+func CycleInGraph2(edges [][]int) bool {
+	numberOfNodes := len(edges)
+	colors := make([]Color, len(edges))
+
+	for node := 0; node < numberOfNodes; node++ {
+		if colors[node] != White {
+			continue
+		}
+
+		containsCycle := traverseAndColorNodes(node, edges, colors)
+		if containsCycle {
+			return true
+		}
+	}
+
+	return false
+}
+
+func traverseAndColorNodes(node int, edges [][]int, colors []Color) bool {
+	colors[node] = Grey
+
+	neighbors := edges[node]
+	for _, neighbor := range neighbors {
+		neighborColor := colors[neighbor]
+
+		if neighborColor == Grey {
+			return true
+		}
+
+		if neighborColor == Black {
+			continue
+		}
+
+		containsCycle := traverseAndColorNodes(neighbor, edges, colors)
+		if containsCycle {
+			return true
+		}
+	}
+
+	colors[node] = Black
+	return false
+}
