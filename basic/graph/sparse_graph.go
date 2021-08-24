@@ -15,7 +15,7 @@ type SparseGraph struct {
 }
 
 func (g *SparseGraph) SearchR(v, w int) bool {
-	return g.searchR(v, w, make(map[int]bool))
+	return g.searchR(w, v, make(map[int]bool))
 }
 
 func (g *SparseGraph) searchR(v, w int, visited map[int]bool) bool {
@@ -29,7 +29,11 @@ func (g *SparseGraph) searchR(v, w int, visited map[int]bool) bool {
 		if visited[neighbor] {
 			continue
 		}
-		return g.searchR(neighbor, w, visited)
+		ok := g.searchR(neighbor, w, visited)
+		if ok {
+			fmt.Printf("%d->%d\n", neighbor, v)
+			return true
+		}
 	}
 
 	return false
