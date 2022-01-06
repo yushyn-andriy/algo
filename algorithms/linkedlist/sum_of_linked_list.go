@@ -32,3 +32,36 @@ func SumOfLinkedLists(linkedListOne *LinkedList, linkedListTwo *LinkedList) *Lin
 
 	return head
 }
+
+func SumOfLinkedLists2(linkedListOne *LinkedList, linkedListTwo *LinkedList) *LinkedList {
+	newLinkedListHeadPointer := &LinkedList{Value: 0}
+	currentNode := newLinkedListHeadPointer
+
+	carry := 0
+	currFirstNode, currSecondNode := linkedListOne, linkedListTwo
+	for currFirstNode != nil || currSecondNode != nil || carry != 0 {
+		var valueOne, valueTwo int
+		if currFirstNode != nil {
+			valueOne = currFirstNode.Value
+		}
+		if currSecondNode != nil {
+			valueTwo = currSecondNode.Value
+		}
+
+		sumOfValues := valueOne + valueTwo + carry
+		newValue := sumOfValues % 10
+		newNode := &LinkedList{Value: newValue}
+		currentNode.Next = newNode
+		currentNode = newNode
+
+		carry = sumOfValues / 10
+		if currFirstNode != nil {
+			currFirstNode = currFirstNode.Next
+		}
+		if currSecondNode != nil {
+			currSecondNode = currSecondNode.Next
+		}
+	}
+
+	return newLinkedListHeadPointer.Next
+}
