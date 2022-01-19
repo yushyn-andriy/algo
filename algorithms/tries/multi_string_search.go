@@ -43,9 +43,48 @@ func MultiStringSearch1(bigString string, smallStrings []string) []bool {
 	return output
 }
 
+type SuffixTrie1 map[byte]SuffixTrie1
+
+func NewSuffixTrie1() SuffixTrie1 {
+	return SuffixTrie1{}
+}
+
+func (st SuffixTrie1) Populate(s string) {
+	for i := range s {
+		trie := st
+		for j := i; j < len(s); j++ {
+			ch := s[j]
+			if _, found := trie[ch]; !found {
+				trie[ch] = NewSuffixTrie1()
+			}
+			trie = trie[ch]
+		}
+		trie['*'] = nil
+	}
+}
+func (st SuffixTrie1) Contains(s string) bool {
+	trie := st
+	for i := range s {
+		ch := s[i]
+		_, found := trie[ch]
+		if !found {
+			return false
+		}
+		trie = trie[ch]
+	}
+
+	// _, found := trie['*']
+	return true // found
+}
+
 func MultiStringSearch2(bigString string, smallStrings []string) []bool {
-	// Write your code here.
-	return nil
+	st := NewSuffixTrie1()
+	st.Populate(bigString)
+	result := make([]bool, len(smallStrings))
+	for i := range smallStrings {
+		result[i] = st.Contains(smallStrings[i])
+	}
+	return result
 }
 
 func MultiStringSearch3(bigString string, smallStrings []string) []bool {
