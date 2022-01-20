@@ -87,7 +87,57 @@ func MultiStringSearch2(bigString string, smallStrings []string) []bool {
 	return result
 }
 
+type Trie3 struct {
+	children map[byte]Trie3
+
+	word string
+}
+
+func (t Trie3) Add(word string) {
+	current := t
+	for i := range word {
+		letter := word[i]
+		if _, found := current.children[letter]; !found {
+			current.children[letter] = Trie3{
+				children: map[byte]Trie3{},
+			}
+		}
+		current = current.children[letter]
+	}
+	current.children['*'] = Trie3{
+		children: map[byte]Trie3{},
+		word:     word,
+	}
+}
+
 func MultiStringSearch3(bigString string, smallStrings []string) []bool {
-	// Write your code here.
-	return nil
+	trie := Trie3{children: make(map[byte]Trie3)}
+	for _, str := range smallStrings {
+		trie.Add(str)
+	}
+	containedStrings := make(map[string]bool)
+	for i := range bigString {
+		findSmallStringsIn(bigString, i, trie, containedStrings)
+	}
+
+	output := make([]bool, len(smallStrings))
+	for i, str := range smallStrings {
+		output[i] = containedStrings[str]
+	}
+
+	return output
+}
+
+func findSmallStringsIn(str string, startIdx int, trie Trie3, containedStrings map[string]bool) {
+	current := trie
+	for i := startIdx; i < len(str); i++ {
+		currentChar := str[i]
+		if _, found := current.children[currentChar]; !found {
+			break
+		}
+		current = current.children[currentChar]
+		if end, found := current.children['*']; found {
+			containedStrings[end.word] = true
+		}
+	}
 }
