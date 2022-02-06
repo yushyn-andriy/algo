@@ -100,3 +100,28 @@ func TestSuffixTrie1(t *testing.T) {
 	}
 
 }
+
+
+func TestSortingInPlace(t *testing.T) {
+	cases := []struct{
+		arr []int
+		expected []int
+	}{
+		{
+			[]int{5, 4, 7, 1, 2},
+			[]int{1, 2, 4, 5, 7},
+		},
+		{
+			[]int{5, 4, 7, 1, 2, 3},
+			[]int{1, 2, 3, 4, 5, 7},
+		},
+	}
+
+	for _, c := range cases {
+		sortingInPlace(c.arr)
+		if !reflect.DeepEqual(c.arr, c.expected) {
+			t.Errorf("expected %v got %v", c.expected, c.arr)
+		}
+	}
+
+}

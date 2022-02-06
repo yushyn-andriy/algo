@@ -141,3 +141,13 @@ func findSmallStringsIn(str string, startIdx int, trie Trie3, containedStrings m
 		}
 	}
 }
+
+func sortingInPlace(arr []int) {
+	for i := 0; i < len(arr); i++ {
+		for j := len(arr) - 1; j >= i; j-- {
+			if arr[j] < arr[i] {
+				arr[i], arr[j] = arr[j], arr[i]
+			}
+		}
+	}
+}
