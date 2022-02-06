@@ -7,6 +7,7 @@ type substring struct {
 
 func (ss substring) length() int { return ss.right - ss.left }
 
+// O(n) time |O(min(n, a)) space
 func LongestSubstringWithoutDuplication(str string) string {
 	lastSeen := map[rune]int{}
 	longest := substring{0, 1}
