@@ -1,0 +1,130 @@
+	 hl 746 746 746
+friends of hl: ['oaks'] ['hl', 746, 1, 'oaks']
+OrderedDict([('hl', {'gave': 746, 'received': 0}),
+             ('voyuer', {'gave': 0, 'received': 0}),
+             ('potatoes', {'gave': 0, 'received': 0}),
+             ('thereafter', {'gave': 0, 'received': 0}),
+             ('syracuse', {'gave': 0, 'received': 0}),
+             ('airplane', {'gave': 0, 'received': 0}),
+             ('halifax', {'gave': 0, 'received': 0}),
+             ('poison', {'gave': 0, 'received': 0}),
+             ('conceptual', {'gave': 0, 'received': 0}),
+             ('oaks', {'gave': 0, 'received': 746})])
+	 voyuer 630 105 630
+friends of voyuer: ['airplane', 'syracuse', 'oaks', 'poison', 'hl', 'conceptual'] ['voyuer', 630, 6, 'airplane', 'syracuse', 'oaks', 'poison', 'hl', 'conceptual']
+OrderedDict([('hl', {'gave': 746, 'received': 105}),
+             ('voyuer', {'gave': 630, 'received': 0}),
+             ('potatoes', {'gave': 0, 'received': 0}),
+             ('thereafter', {'gave': 0, 'received': 0}),
+             ('syracuse', {'gave': 0, 'received': 105}),
+             ('airplane', {'gave': 0, 'received': 105}),
+             ('halifax', {'gave': 0, 'received': 0}),
+             ('poison', {'gave': 0, 'received': 105}),
+             ('conceptual', {'gave': 0, 'received': 105}),
+             ('oaks', {'gave': 0, 'received': 851})])
+	 potatoes 239 79 237
+friends of potatoes: ['voyuer', 'airplane', 'thereafter'] ['potatoes', 239, 3, 'voyuer', 'airplane', 'thereafter']
+OrderedDict([('hl', {'gave': 746, 'received': 105}),
+             ('voyuer', {'gave': 630, 'received': 79}),
+             ('potatoes', {'gave': 237, 'received': 0}),
+             ('thereafter', {'gave': 0, 'received': 79}),
+             ('syracuse', {'gave': 0, 'received': 105}),
+             ('airplane', {'gave': 0, 'received': 184}),
+             ('halifax', {'gave': 0, 'received': 0}),
+             ('poison', {'gave': 0, 'received': 105}),
+             ('conceptual', {'gave': 0, 'received': 105}),
+             ('oaks', {'gave': 0, 'received': 851})])
+	 thereafter 760 253 759
+friends of thereafter: ['airplane', 'potatoes', 'hl'] ['thereafter', 760, 3, 'airplane', 'potatoes', 'hl']
+OrderedDict([('hl', {'gave': 746, 'received': 358}),
+             ('voyuer', {'gave': 630, 'received': 79}),
+             ('potatoes', {'gave': 237, 'received': 253}),
+             ('thereafter', {'gave': 759, 'received': 79}),
+             ('syracuse', {'gave': 0, 'received': 105}),
+             ('airplane', {'gave': 0, 'received': 437}),
+             ('halifax', {'gave': 0, 'received': 0}),
+             ('poison', {'gave': 0, 'received': 105}),
+             ('conceptual', {'gave': 0, 'received': 105}),
+             ('oaks', {'gave': 0, 'received': 851})])
+	 syracuse 416 104 416
+friends of syracuse: ['hl', 'halifax', 'poison', 'conceptual'] ['syracuse', 416, 4, 'hl', 'halifax', 'poison', 'conceptual']
+OrderedDict([('hl', {'gave': 746, 'received': 462}),
+             ('voyuer', {'gave': 630, 'received': 79}),
+             ('potatoes', {'gave': 237, 'received': 253}),
+             ('thereafter', {'gave': 759, 'received': 79}),
+             ('syracuse', {'gave': 416, 'received': 105}),
+             ('airplane', {'gave': 0, 'received': 437}),
+             ('halifax', {'gave': 0, 'received': 104}),
+             ('poison', {'gave': 0, 'received': 209}),
+             ('conceptual', {'gave': 0, 'received': 209}),
+             ('oaks', {'gave': 0, 'received': 851})])
+	 airplane 414 59 413
+friends of airplane: ['voyuer', 'syracuse', 'poison', 'potatoes', 'thereafter', 'conceptual', 'oaks'] ['airplane', 414, 7, 'voyuer', 'syracuse', 'poison', 'potatoes', 'thereafter', 'conceptual', 'oaks']
+OrderedDict([('hl', {'gave': 746, 'received': 462}),
+             ('voyuer', {'gave': 630, 'received': 138}),
+             ('potatoes', {'gave': 237, 'received': 312}),
+             ('thereafter', {'gave': 759, 'received': 138}),
+             ('syracuse', {'gave': 416, 'received': 164}),
+             ('airplane', {'gave': 413, 'received': 437}),
+             ('halifax', {'gave': 0, 'received': 104}),
+             ('poison', {'gave': 0, 'received': 268}),
+             ('conceptual', {'gave': 0, 'received': 268}),
+             ('oaks', {'gave': 0, 'received': 910})])
+	 halifax 405 57 399
+friends of halifax: ['poison', 'potatoes', 'airplane', 'voyuer', 'thereafter', 'oaks', 'conceptual'] ['halifax', 405, 7, 'poison', 'potatoes', 'airplane', 'voyuer', 'thereafter', 'oaks', 'conceptual']
+OrderedDict([('hl', {'gave': 746, 'received': 462}),
+             ('voyuer', {'gave': 630, 'received': 195}),
+             ('potatoes', {'gave': 237, 'received': 369}),
+             ('thereafter', {'gave': 759, 'received': 195}),
+             ('syracuse', {'gave': 416, 'received': 164}),
+             ('airplane', {'gave': 413, 'received': 494}),
+             ('halifax', {'gave': 399, 'received': 104}),
+             ('poison', {'gave': 0, 'received': 325}),
+             ('conceptual', {'gave': 0, 'received': 325}),
+             ('oaks', {'gave': 0, 'received': 967})])
+	 poison 212 212 212
+friends of poison: ['airplane'] ['poison', 212, 1, 'airplane']
+OrderedDict([('hl', {'gave': 746, 'received': 462}),
+             ('voyuer', {'gave': 630, 'received': 195}),
+             ('potatoes', {'gave': 237, 'received': 369}),
+             ('thereafter', {'gave': 759, 'received': 195}),
+             ('syracuse', {'gave': 416, 'received': 164}),
+             ('airplane', {'gave': 413, 'received': 706}),
+             ('halifax', {'gave': 399, 'received': 104}),
+             ('poison', {'gave': 212, 'received': 325}),
+             ('conceptual', {'gave': 0, 'received': 325}),
+             ('oaks', {'gave': 0, 'received': 967})])
+	 conceptual 787 98 784
+friends of conceptual: ['syracuse', 'airplane', 'oaks', 'hl', 'potatoes', 'thereafter', 'voyuer', 'halifax'] ['conceptual', 787, 8, 'syracuse', 'airplane', 'oaks', 'hl', 'potatoes', 'thereafter', 'voyuer', 'halifax']
+OrderedDict([('hl', {'gave': 746, 'received': 560}),
+             ('voyuer', {'gave': 630, 'received': 293}),
+             ('potatoes', {'gave': 237, 'received': 467}),
+             ('thereafter', {'gave': 759, 'received': 293}),
+             ('syracuse', {'gave': 416, 'received': 262}),
+             ('airplane', {'gave': 413, 'received': 804}),
+             ('halifax', {'gave': 399, 'received': 202}),
+             ('poison', {'gave': 212, 'received': 325}),
+             ('conceptual', {'gave': 784, 'received': 325}),
+             ('oaks', {'gave': 0, 'received': 1065})])
+	 oaks 556 69 552
+friends of oaks: ['voyuer', 'potatoes', 'poison', 'airplane', 'syracuse', 'hl', 'halifax', 'thereafter'] ['oaks', 556, 8, 'voyuer', 'potatoes', 'poison', 'airplane', 'syracuse', 'hl', 'halifax', 'thereafter']
+OrderedDict([('hl', {'gave': 746, 'received': 629}),
+             ('voyuer', {'gave': 630, 'received': 362}),
+             ('potatoes', {'gave': 237, 'received': 536}),
+             ('thereafter', {'gave': 759, 'received': 362}),
+             ('syracuse', {'gave': 416, 'received': 331}),
+             ('airplane', {'gave': 413, 'received': 873}),
+             ('halifax', {'gave': 399, 'received': 271}),
+             ('poison', {'gave': 212, 'received': 394}),
+             ('conceptual', {'gave': 784, 'received': 325}),
+             ('oaks', {'gave': 552, 'received': 1065})])
+hl -117
+voyuer -268
+potatoes 299
+thereafter -397
+syracuse -85
+airplane 460
+halifax -128
+poison 182
+conceptual -459
+oaks 513
