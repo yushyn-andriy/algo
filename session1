@@ -1,0 +1,13 @@
+Script started on 2022-12-12 02:51:37+02:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="80" LINES="27"]
+[?2004h]0;web@web: ~/proj/algo[01;32mweb@web[00m:[01;34m~/proj/algo[00m
+$ ls
+[?2004l[0m[01;34malgorithms[0m  [01;34mcompetitions[0m  go.mod  README.md  [01;34mthomas-cormen[0m
+[01;34mbasic[0m       [01;32meolymp.bash[0m   go.sum  session1
+[?2004h]0;web@web: ~/proj/algo[01;32mweb@web[00m:[01;34m~/proj/algo[00m
+$ echo 1 >[K/tmp/hello.txt
+[?2004l1 /tmp/hello.txt
+[?2004h]0;web@web: ~/proj/algo[01;32mweb@web[00m:[01;34m~/proj/algo[00m
+$ [?2004l
+exit
+
+Script done on 2022-12-12 02:51:55+02:00 [COMMAND_EXIT_CODE="0"]
