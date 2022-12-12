@@ -3,13 +3,11 @@ from collections import namedtuple, OrderedDict
 
 NAME = BASE = 0
 SIZE, DIM, BOUNDS = 1, 2, 3
-
 stdin = sys.stdin
 
 Bound = namedtuple('Bound', 'lower upper')
 ArrayInfo = namedtuple('ArrayInfo', 'name base size dim bounds coef')
 ArrayRef = namedtuple('ArrayRef', 'name indexes')
-
 
 
 def read_list():
@@ -32,8 +30,8 @@ def calc_coef(base, size, dim, bounds):
             coef[i] = ci
     for i, c in enumerate(coef[1:]):
         coef[0] -= bounds[i].lower * c
-
     return coef
+
 
 def array_info_from_list(l):
     name = l[NAME]
@@ -49,10 +47,12 @@ def array_info_from_list(l):
         name, base, size, dim, bounds, coef)
     return info
 
+
 def array_ref_from_list(l):
     name = l[0]
     idxs = convert_to(l[1:], int)
     return ArrayRef(name, idxs)
+
 
 def calculate_address(arr_map, ref):
     coef = arr_map[ref.name].coef
@@ -60,9 +60,6 @@ def calculate_address(arr_map, ref):
     for i, c in enumerate(coef[1:]):
         address += c * ref.indexes[i]
     return address
-
-
-
 
 
 if __name__ == '__main__':
