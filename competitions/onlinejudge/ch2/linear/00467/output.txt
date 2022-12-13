@@ -1,0 +1,5 @@
+Set 1 synchs again at 5 minute(s) and 0 second(s) after all turning green.
+Set 2 synchs again at 0 minute(s) and 50 second(s) after all turning green.
+Set 3 synchs again at 1 minute(s) and 0 second(s) after all turning green.
+Set 4 is unable to synch after one hour.
+Set 5 synchs again at 0 minute(s) and 40 second(s) after all turning green.
