@@ -20,6 +20,7 @@ class Signal:
         self.red_last = self.red
         self.yellow_last = self.yellow
         self.green_last = self.green
+        self.result = None
 
     def _reset(self):
         self.red_last = self.red
@@ -56,6 +57,7 @@ def readlist(converter):
 
 if __name__ == '__main__':
     idx = 1
+    results = {}
     while True:
         l = readlist(int)
         if not l:
@@ -63,31 +65,31 @@ if __name__ == '__main__':
         signals = [Signal(cycle) for cycle in l]
 
 
-        simula = {}
         HOUR = 60 * 60
         faced_green = False
         faced_yellow = False
         first_faced_green_time = 0
         first_faced_yellow_time = 0
-        for i in range(HOUR):
-            #print(f'time:{i+1} {signals[0].current_state}')
+        for i in range(500):
+            print(f'time:{i+1}', ', '.join([c.current_state for c in signals]))
             if not faced_green:
                 if all([signal.current_state == signal.GREEN for signal in signals]):
                     faced_green = True
                     first_faced_green_time = i
-                    #print('faced green', i)
+                    print('faced green', i)
             elif not faced_yellow and any([signal.current_state == signal.YELLOW for signal in signals]):
                 faced_yellow = True
                 first_faced_yellow_time = i
-                #print('faced yellow', i)
+                print('faced yellow', i)
             elif faced_green and faced_yellow:
                 if all([signal.current_state == signal.GREEN for signal in signals]):
-                    # print(signals)
-                    print(idx, i - first_faced_green_time)# , i - first_faced_yellow_time)
+                    delta = i - first_faced_green_time
+                    print(idx, delta)
+                    results[idx] = delta
                     break
 
             for signal in signals:
                 signal.next_second()
-
+        break
         idx += 1
-
+    print(results)

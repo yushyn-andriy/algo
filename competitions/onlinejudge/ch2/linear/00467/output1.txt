@@ -1,0 +1,22 @@
+Set 1 is unable to synch after one hour.
+Set 2 synchs again at 11 minute(s) and 28 second(s) after all turning green.
+Set 3 is unable to synch after one hour.
+Set 4 is unable to synch after one hour.
+Set 5 synchs again at 4 minute(s) and 36 second(s) after all turning green.
+Set 6 synchs again at 0 minute(s) and 30 second(s) after all turning green.
+Set 7 synchs again at 0 minute(s) and 20 second(s) after all turning green.
+Set 8 is unable to synch after one hour.
+Set 9 synchs again at 0 minute(s) and 24 second(s) after all turning green.
+Set 10 synchs again at 4 minute(s) and 0 second(s) after all turning green.
+Set 11 synchs again at 5 minute(s) and 8 second(s) after all turning green.
+Set 12 is unable to synch after one hour.
+Set 13 synchs again at 53 minute(s) and 18 second(s) after all turning green.
+Set 14 synchs again at 1 minute(s) and 4 second(s) after all turning green.
+Set 15 synchs again at 0 minute(s) and 24 second(s) after all turning green.
+Set 16 synchs again at 4 minute(s) and 0 second(s) after all turning green.
+Set 17 synchs again at 52 minute(s) and 8 second(s) after all turning green.
+Set 18 synchs again at 2 minute(s) and 50 second(s) after all turning green.
+Set 19 synchs again at 1 minute(s) and 36 second(s) after all turning green.
+Set 20 synchs again at 6 minute(s) and 4 second(s) after all turning green.
+Set 21 synchs again at 53 minute(s) and 20 second(s) after all turning green.
+
