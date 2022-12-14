@@ -70,7 +70,7 @@ if __name__ == '__main__':
         faced_yellow = False
         first_faced_green_time = 0
         first_faced_yellow_time = 0
-        for i in range(500):
+        for i in range(HOUR):
             print(f'time:{i+1}', ', '.join([c.current_state for c in signals]))
             if not faced_green:
                 if all([signal.current_state == signal.GREEN for signal in signals]):
@@ -90,6 +90,5 @@ if __name__ == '__main__':
 
             for signal in signals:
                 signal.next_second()
-        break
         idx += 1
     print(results)
