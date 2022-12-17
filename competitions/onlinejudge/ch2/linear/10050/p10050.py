@@ -12,6 +12,7 @@ def is_holiday(number):
     return False
 
 
+# O(N) time | O(N) Space | N is days
 def get_loosed_days(d, params):
     working_calendar = [True] * (d + 1)
     for i in range(1, d + 1):
