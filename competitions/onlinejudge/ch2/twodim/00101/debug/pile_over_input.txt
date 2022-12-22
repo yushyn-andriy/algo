@@ -1,0 +1,11 @@
+10
+move 0 over 9
+move 1 over 9
+move 2 over 9
+move 3 over 6
+move 4 over 6
+move 5 over 6
+pile 9 over 6
+move 8 onto 6
+quit
+
