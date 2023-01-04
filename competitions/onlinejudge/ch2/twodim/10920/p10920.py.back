@@ -1,0 +1,139 @@
+import pytest
+import sys
+
+stdin = sys.stdin
+
+
+@pytest.mark.parametrize('p,expected', [
+    (1, 1),
+    (3, 2),
+    (4, 2),
+    (5, 2),
+    (6, 2),
+    (7, 2), 
+    (8, 2),
+    (9, 2),
+    (10, 3),
+    (11, 3),
+    (12, 3),
+    (25, 3),
+    (26, 4),
+])
+def test_get_ring_id(p, expected):
+    ring_map = get_ring_map()
+    assert get_ring_id(p, ring_map) == expected
+
+
+@pytest.mark.parametrize('size,p,expected', [
+    (3, 2, (0, 1)),
+    (1, 1, (0, 0)),
+    (3, 9, (0, 1)),
+    (5, 9, (1, 2)),
+    (5, 8, (1, 2)),
+    (7, 26, (0, 5)),
+    (7, 41, (0, 5)),
+    (7, 49, (0, 5)),
+    (9, 49, (1, 6)),
+])
+def test_coord(size, p, expected):
+    ring_map = get_ring_map()
+    ring_id = get_ring_id(p, ring_map)
+    res = get_coords(size, p, ring_id)
+    assert res == expected
+
+
+
+def eq(current, target):
+    return bool(current == target)
+
+
+
+def get_ring_map(N=100000):
+    g = {}
+    for i in range(N):
+        g[2 * i - 1] = i
+    return g
+
+
+def get_ring_id(p, ring_map):
+    if p == 1:
+        return 1
+    pf = pow(p, 0.5)
+    ps = int(pf)
+    while True:
+        if ps % 2 == 1 and ps > 1 and ps >= pf:
+            break
+        elif ps == 1:
+            ps += 1
+            continue
+        ps += 1
+    return ring_map[ps]
+
+
+def get_coords(sz, p, ring_id):
+    i, j = int(sz / 2) - (ring_id - 1), int(sz / 2) + (ring_id - 1) - 1
+    if sz == 1:
+        return 0, 0
+    if ring_id == 1:
+        return i, j + 1
+    return i, j
+
+
+
+def to_cartesian(sz, p, ring_map):
+    ring_id = get_ring_id(p, ring_map)
+    i, j = get_coords(sz, p, ring_id)
+
+
+    steps = 2 * (ring_id - 1) - 1
+    spiral_index = (2 * (ring_id - 1) - 1) ** 2  + 1
+    #print(f'spidx:{spiral_index}, sz:{sz}, p:{p}, i:{i}, j:{j}, ring:{ring_id}')
+    if ring_id == 1:
+        return i, j
+
+    while not eq(spiral_index, p):
+        # left
+        for _ in range(steps):
+            if eq(spiral_index, p):
+                return i, j
+            j -= 1
+            spiral_index += 1
+
+
+        steps += 1
+        # down
+        for _ in range(steps):
+            if eq(spiral_index, p):
+                return i, j
+            i += 1
+            spiral_index += 1
+
+
+        # right
+        for _ in range(steps):
+            if eq(spiral_index, p):
+                return i, j
+            j += 1
+            spiral_index += 1
+
+
+        # up
+        for _ in range(steps):
+            if eq(spiral_index, p):
+                return i, j
+            i -= 1
+            spiral_index += 1
+    return i, j
+
+if __name__ == "__main__":
+    ring_map = get_ring_map()
+
+    while True:
+        a, b = stdin.readline().strip().split()
+        if a == '0' and b == '0':
+            break
+        SZ, P = int(a), int(b)
+        #print('sz, p', SZ, P)
+        i, j = to_cartesian(SZ, P, ring_map)
+        #print(i, j)
+        print(f'Line = {SZ - i}, column = {j+1}.')
