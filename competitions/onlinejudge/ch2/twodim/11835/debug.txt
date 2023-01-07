@@ -1,0 +1,11 @@
+1 <= G <= 100 number of grand prix - 1
+1 <= P <= 100 number of pilots  - 3
+=======================================
+places in grand prix 
+pilot 1: had 3 place
+pilot 2: had 2 place
+pilot 3: had 1 place
+
+1 <= S <=10 - scoring system 
+
+
