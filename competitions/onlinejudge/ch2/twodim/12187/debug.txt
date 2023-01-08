@@ -1,0 +1,8 @@
+N, R, C, K
+N [2, 100]- number of heir
+R - rows
+C - columns of the kingdom
+K - number of battles
+
+the R rows described initial land distribution
+
