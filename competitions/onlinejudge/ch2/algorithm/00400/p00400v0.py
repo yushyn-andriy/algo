@@ -10,7 +10,9 @@ WIDTH = 60
 def unix_ls(filenames, width=WIDTH):
     n = len(filenames)
     longest = len(max(filenames, key=lambda x: len(x)))
+    #print(longest, filenames)
     filenames = sorted(filenames)
+
 
     n_col = (width - longest) // (longest + 2)  + 1
     n_rows = 0
@@ -20,15 +22,22 @@ def unix_ls(filenames, width=WIDTH):
 
     matrix = [[''] * n_col for _ in range(n_rows)]
     c_idx = 0
+    end = False
     for j in range(n_col):
+        if end:
+            break
         for i in range(n_rows):
-            col_width = longest
             if j < n_col -1:
-                col_width += 2
-            matrix[i][j] = f'{filenames[c_idx]:<{col_width}}'
+                s =  f'{filenames[c_idx]:<{longest+2}}' 
+            else:
+                s =  f'{filenames[c_idx]:<{longest}}' 
+            matrix[i][j] = s
             c_idx += 1
             if c_idx >= len(filenames):
-                return matrix
+                end = True
+                break
+
+    return matrix
 
 
 
