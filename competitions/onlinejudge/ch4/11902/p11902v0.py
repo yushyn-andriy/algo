@@ -3,7 +3,6 @@ import sys
 
 stdin = sys.stdin
 
-
 class Vertex:
     """..."""
     __slots__ = ('_element', )
@@ -114,27 +113,92 @@ class Graph:
             self._outgoing[u][v] = e1
             self._outgoing[v][u] = e2
 
-
-def DFS(g: Graph, u: Vertex, discovered, f=None):
-    for e in g.incident_vertices(u):
-        if e not in discovered:
-            if f is not None:
-                f(e)
+# DFS modified for dominator problem
+def DFS(g: Graph, root: Vertex, discovered, exc=None, y=None):
+    for e in g.incident_vertices(root):
+        #print('\troot:', root, e)
+        if exc is not None and exc == e:
+            #print('\t\tcontinue', e)
+            continue
+        
+        if y is not None and y == e:
             discovered[e] = None
-            DFS(g, e, discovered, f)
+            return
 
-def pprint(e):
-    print(e.element())
+
+        if e not in discovered:
+            discovered[e] = None
+            DFS(g, e, discovered, exc)
+
+
+def is_dominator(g, root, x, y):
+    
+    discovered = {root: None}
+    if root == x:
+        DFS(g, root, discovered, exc=None, y=y)
+        if y in discovered:
+            return True
+
+    if x == y:
+        DFS(g, root, discovered, exc=None, y=y)
+        if y in discovered:
+            return True
+        else:
+            return False
+
+    # should be reachable from root to y
+    DFS(g, root, discovered, exc=None, y=y)
+    #print(discovered)
+    if y not in discovered:
+        #print(f'1. {y} not in {discovered}')
+        return False
+
+    # should not be reachable without intermediate x node
+    discovered = {root: None}
+    DFS(g, root, discovered, exc=x, y=y)
+    #print(discovered)
+    if y not in discovered:
+        #print(f'2. {y} not in {discovered}')
+        return True
+
+    # if reachable that there is another way
+    if y in discovered:
+        #print(f'3. {y} in {discovered}')
+        return False
+
 
 if __name__ == '__main__':
     n = int(stdin.readline().strip())
-    g = Graph()
-    for i in range(n):
-        vals = [int(x) for x in stdin.readline().strip().split()]
-        v, u = Vertex(vals[0]), Vertex(vals[1])
-        g.insert_vertex(v)
-        g.insert_vertex(u)
-        g.insert_edge(v, u)
-    
-    discovered = {}
-    DFS(g, list(g.vertices())[0], discovered, pprint)
+    for c in range(n):
+        g = Graph(directed=True)
+        nodes = int(stdin.readline().strip())
+        for i in range(nodes):
+            v1 = Vertex(i)
+            g.insert_vertex(v1)
+            
+            row = [int(x) for x in stdin.readline().strip().split()]
+            for j, v in enumerate(row):
+                if v == 1:
+                    v2 = Vertex(j)
+                    g.insert_vertex(v2)
+                    g.insert_edge(v1, v2)
+        
+        print(f'Case {c+1}:')
+
+        root = Vertex(0)
+        vertices = list(g.vertices())
+        for i in range(nodes):
+            x = Vertex(i)
+            answers = []
+            for j in range(nodes):
+                y = Vertex(j)
+                dom = is_dominator(g, root, x, y)
+                answer = 'Y' if dom else 'N'
+                answers.append(answer)
+            
+            s = f'|{"|".join(answers)}|'
+            print(f'+{"-" * (len(s) - 2)}+')
+            print(s)
+        print(f'+{"-" * (len(s) - 2)}+')
+
+        #print(is_dominator(g, root, Vertex(0), Vertex(1)), c)
