@@ -128,12 +128,13 @@ def BFS(g, root, discovered, f=None):
     d = deque([root])
     while len(d) != 0:
         node = d.popleft()
+        if f:
+            f(node)
         for el in g.incident_vertices(node):
             if el not in discovered:
                 discovered[el] = True
                 d.append(el)
-        if f:
-            f(el)
+
 
 
 def pprint(e):
