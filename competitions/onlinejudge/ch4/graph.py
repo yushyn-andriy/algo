@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 
 
 stdin = sys.stdin
@@ -123,6 +124,18 @@ def DFS(g: Graph, u: Vertex, discovered, f=None):
             discovered[e] = None
             DFS(g, e, discovered, f)
 
+def BFS(g, root, discovered, f=None):
+    d = deque([root])
+    while len(d) != 0:
+        node = d.popleft()
+        for el in g.incident_vertices(node):
+            if el not in discovered:
+                discovered[el] = True
+                d.append(el)
+        if f:
+            f(el)
+
+
 def pprint(e):
     print(e.element())
 
@@ -137,4 +150,5 @@ if __name__ == '__main__':
         g.insert_edge(v, u)
     
     discovered = {}
-    DFS(g, list(g.vertices())[0], discovered, pprint)
+    #DFS(g, list(g.vertices())[0], discovered, pprint)
+    BFS(g, list(g.vertices())[0], discovered, print)
