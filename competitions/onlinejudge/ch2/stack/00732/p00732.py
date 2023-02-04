@@ -6,7 +6,6 @@ stdin = sys.stdin
 
 
 def backtrack(s1, s2, s1_idx, s2_idx, ops, sta):
-    # print(ops)
     if s2_idx == len(s2):
         print(' '.join(ops))
         return
