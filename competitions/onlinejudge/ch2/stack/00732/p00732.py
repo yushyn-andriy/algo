@@ -32,6 +32,6 @@ if __name__ == '__main__':
         s1 = row.strip()
         s2 = stdin.readline().strip()
         print('[')
-        seqs = backtrack(s1, s2, 0, 0, [], [])
+        backtrack(s1, s2, 0, 0, [], [])
         print(']')
         
