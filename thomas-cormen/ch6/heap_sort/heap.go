@@ -33,7 +33,7 @@ func MaxHeapify(h Heap, i int) {
 	if left < h.Size() && h[left] > h[i] {
 		largest = left
 	}
-	if right < h.Size() && h[right] > h[i] {
+	if right < h.Size() && h[right] > h[largest] {
 		largest = right
 	}
 	if largest != i {
