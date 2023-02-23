@@ -1,2 +1,6 @@
-# algo
-Implementation of data structures and algorithms in the Golang programming language
+# Algorithms and Data Structures
+# Solutions for some competetive programming tasks
+
+
+Implementation in the Golang or Python programming language.
+
