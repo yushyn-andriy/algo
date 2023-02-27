@@ -20,19 +20,6 @@ dr = [1, 1, 1, -1, -1, -1, 0, 0]
 dc = [-1, 0, 1, -1, 0, 1, -1, 1]
 
 
-# def helper_dfs(image, i, j, c1, c2):
-#     rows = len(image)
-#     columns = len(image[0])
-
-#     if i < 0 or i > rows - 1 or j < 0 or j > columns - 1:
-#         return
-#     if image[i][j] != c1:
-#         return
-
-#     image[i][j] = c2
-#     for d in range(8):
-#         helper_dfs(image, dr[d] + i, dc[d] + j, c1, c2)
-
 
 def helper_visit_white_bfs(image, i, j, white, visited):
     rows, columns = len(image), len(image[0])
@@ -114,11 +101,4 @@ if __name__ == '__main__':
         result = recognize(deepcopy(image))
         print(f'Case {c}: {result}')
 
-
-        # for row in image:
-        #     print(''.join(row))
-
-        # print()
-
         c+=1
-
