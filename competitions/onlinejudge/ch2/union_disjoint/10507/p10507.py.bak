@@ -1,0 +1,77 @@
+import sys
+from collections import defaultdict
+
+
+
+
+stdin = sys.stdin
+
+
+
+def parent(i, parents):
+    if parents[i] == -1:
+        return i
+    parents[i] = parent(parents[i], parents)
+    return parents[i]
+
+
+def is_connected(a, b, parents):
+    return bool(parent(a, parents) == parent(b, parents))
+
+
+def union(a, b, parents, ranks):
+    x = parent(a, parents)
+    y = parent(b, parents)
+    if x == y:
+        return False
+    
+    if ranks[x] >= ranks[y]:
+        parents[y] = x
+        ranks[x] += ranks[y]
+    else:
+        parents[y] = x
+        ranks[y] += ranks[x]
+
+    return True
+
+
+
+if __name__ == '__main__':
+    for row in stdin:
+        row = row.strip()
+        if not row:
+            continue
+
+        nodes = int(row)
+        edges = int(stdin.readline().strip())
+        connected = list(stdin.readline().strip())
+
+        ranks = defaultdict(lambda : 0)
+        parents = defaultdict(lambda : -1)
+        activations = defaultdict(lambda : 0)
+
+        for i in range(len(connected) -1):
+            j = i+1
+            a, b = connected[i], connected[j]
+            union(a, b, parents, ranks)
+            activations[a] = 3
+            activations[b] = 3
+
+        connected_set = set(connected)
+        waked_up = False
+        for _ in range(edges):
+            x, y = list(stdin.readline().strip())
+            if is_connected(x, connected[0], parents) or is_connected(y, connected[0], parents):
+                activations[x] += 1
+                activations[y] += 1
+            union(x, y, parents, ranks)
+            if len(activations) == nodes and all([x >=3 for x in activations.values()]):
+                # print('Done', len(activations) - len(connected))
+                waked_up = True
+        # print(activations)
+
+        if nodes == len(activations) and all([x >=3 for x in activations.values()]):
+            print(f'WAKE UP IN, {len(activations) - len(connected)}, YEARS')
+        else:
+            print('THIS BRAIN NEVER WAKES UP')
+
