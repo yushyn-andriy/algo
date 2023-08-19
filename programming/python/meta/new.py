@@ -14,6 +14,6 @@ class Bar:
     def say_hi(self):
         print('Hi')
 
-o =object_maker(Bar, None)        
+o = object_maker(Bar, None)        
 o.say_hi()
 print(o.__class__)

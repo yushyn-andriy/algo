@@ -1,7 +1,9 @@
 import re
 import reprlib
 import collections
+from collections import abc
 
+abc.Iterator
 
 RE_WORD = re.compile(r'\w+')
 
@@ -28,6 +30,10 @@ class Foo:
     def __iter__(self):
         pass
 
+
+
+print('issubclass(Foo, abc.Iterable) =', issubclass(Foo, abc.Iterable))
+print('isinstance(Foo(), abc.Iterable) =', isinstance(Foo(), abc.Iterable))
 
 text = '''
 interpreter works in the following order
@@ -59,7 +65,6 @@ while True:
     except StopIteration:
         del ss
         break
-
 
 
 class Sentence1:

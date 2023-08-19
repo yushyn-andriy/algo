@@ -1,0 +1,63 @@
+Acquire
+Notify
+Release
+Condition Acquire by Subscriber: Thread-2
+Start waiting Thread-2
+Condition Acquire by Subscriber: Thread-3
+Start waiting Thread-3
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-2
+popped 62
+Condition Release by Subscriber: Thread-2
+Condition Acquire by Subscriber: Thread-2
+Start waiting Thread-2
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-3
+popped 82
+Condition Release by Subscriber: Thread-3
+Condition Acquire by Subscriber: Thread-3
+Start waiting Thread-3
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-2
+popped 10
+Condition Release by Subscriber: Thread-2
+Condition Acquire by Subscriber: Thread-2
+Start waiting Thread-2
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-3
+popped 25
+Condition Release by Subscriber: Thread-3
+Condition Acquire by Subscriber: Thread-3
+Start waiting Thread-3
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-2
+popped 91
+Condition Release by Subscriber: Thread-2
+Condition Acquire by Subscriber: Thread-2
+Start waiting Thread-2
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-3
+popped 37
+Condition Release by Subscriber: Thread-3
+Condition Acquire by Subscriber: Thread-3
+Start waiting Thread-3
+Acquire
+Notify
+Release
+Condition Wait by Subscriber: Thread-2
+popped 12
+Condition Release by Subscriber: Thread-2
+Condition Acquire by Subscriber: Thread-2
+Start waiting Thread-2
