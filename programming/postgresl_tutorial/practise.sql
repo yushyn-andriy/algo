@@ -494,3 +494,46 @@ with sum as (select facid, sum(slots) as totalslots
 select facid, totalslots 
 	from sum
 	where totalslots = (select max(totalslots) from sum);
+
+
+
+
+-- Produce a list of the total number of slots booked per facility per 
+-- month in the year of 2012. In this version, include output rows 
+-- containing totals for all months per facility, and a total for all months 
+-- for all facilities. The output table should consist of facility id, month 
+-- and slots, sorted by the id and month. When calculating the aggregated values 
+-- for all months and all facids, return null values in the month and facid columns.
+select b.facid, extract(month from b.starttime) as month, sum(b.slots) as slots
+from cd.bookings b
+where extract(year from b.starttime) = '2012'
+group by 
+rollup(
+  	b.facid,
+	extract(month from b.starttime)
+)
+order by b.facid, month;
+
+
+-- Produce a list of the total number of hours booked per facility, 
+-- remembering that a slot lasts half an hour. The output table 
+-- should consist of the facility id, 
+-- name, and hours booked, sorted by facility id. 
+-- Try formatting the hours to two decimal places.
+select
+	f.facid,
+	f.name, 
+	TRIM(TO_CHAR(SUM(b.slots) / 2.0, 'FM999999990.00')) AS "Total Hours"
+from cd.facilities f join cd.bookings b 
+using(facid)
+group by f.facid
+order by f.facid;
+
+
+-- Produce a list of each member name, id, and their 
+-- first booking after September 1st 2012. Order by member ID.
+select m.surname, m.firstname, m.memid, min(b.starttime) as starttime from cd.members m
+join cd.bookings b using(memid)
+where cast(b.starttime as DATE) >= '2012.09.01'
+group by m.memid
+order by m.memid;
