@@ -3,6 +3,7 @@
 set -e
 
 
+
 BASE_DIR=competitions/e-olymp/$1
 mkdir -p $BASE_DIR
 
