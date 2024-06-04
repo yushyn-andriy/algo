@@ -34,3 +34,4 @@ if __name__ == '__main__':
             break
         degree = get_degree(a, b, c, d)
         print(degree)
+
