@@ -1,0 +1,1 @@
+searchState.loadedDescShard("demo_doc", 0, "white color\nColor represents a material color\nblack color\nsums up two numbers together\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.")
