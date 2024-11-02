@@ -1,0 +1,4 @@
+banana::10
+PC::24000
+IPhone::18400
+bil::1
